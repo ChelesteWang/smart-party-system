@@ -1,6 +1,7 @@
 import { Column, Entity } from "typeorm";
 import { EntityModel } from '@midwayjs/orm';
 
+@EntityModel('user_login_token_log')
 @Entity("user_login_token_log", { schema: "test" })
 export class UserLoginTokenLog {
   @Column("varchar", { name: "id", nullable: true, length: 100 })
