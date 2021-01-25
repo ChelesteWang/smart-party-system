@@ -3,7 +3,7 @@ import { Context } from 'egg';
 import { UserService } from '../service/user';
 
 @Provide()
-@Controller('/api/v1')
+@Controller('/api/v1/user')
 export class UserController {
   @Inject()
   ctx: Context;
@@ -11,13 +11,13 @@ export class UserController {
   @Inject()
   userService: UserService;
 
-  @Get('/user/all')
+  @Get('/all')
   async getAllUser() {
     const user = await this.userService.getAllUser();
     return { success: true, message: 'OK', data: user };
   }
 
-  @Get('/user')
+  @Get('/')
   async getUser(@Query() uid: number) {
     const user = await this.userService.getUserByID(uid);
     console.log(user)

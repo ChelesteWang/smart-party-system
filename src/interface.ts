@@ -1,6 +1,6 @@
-/**
- * @description User-Service parameters
- */
-export interface IUserOptions {
-  uid: number;
+export interface Result {
+  code: number;
+  message: string;
+  data?: any;
 }
+
