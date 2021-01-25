@@ -11,12 +11,14 @@ export class UserService {
   userModel: Repository<user>;
 
   async getAllUser() {
-    let userList = await this.userModel.find()
-    return userList
+    return await this.userModel.find()
   }
 
-  async getUserByID(uid) {
-    let user = await this.userModel.findOne(uid)
-    return user
+  async getUserByID(uid: number) {
+    return await this.userModel.findOne(uid)
+  }
+  
+  async getUserByUsername(username: String) {
+    return await this.userModel.findOne({ username: username })
   }
 }
