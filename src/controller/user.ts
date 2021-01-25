@@ -18,8 +18,8 @@ export class UserController {
   }
 
   @Get('/user')
-  async getUser(@Query() uid) {
-    const user = await this.userService.getUserByID({ uid });
+  async getUser(@Query() uid: number) {
+    const user = await this.userService.getUserByID(uid);
     console.log(user)
     return { success: true, message: 'OK', data: user };
   }

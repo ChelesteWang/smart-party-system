@@ -1,14 +1,14 @@
 import { Provide } from '@midwayjs/decorator';
 // import { IUserOptions } from '../interface';
 import { InjectEntityModel } from '@midwayjs/orm'
-import { user } from './entity/user'
+import { User } from '../entities/User'
 import { Repository } from 'typeorm'
 
 @Provide()
 export class UserService {
 
-  @InjectEntityModel(user)
-  userModel: Repository<user>;
+  @InjectEntityModel(User)
+  userModel: Repository<User>;
 
   async getAllUser() {
     return await this.userModel.find()
@@ -17,8 +17,8 @@ export class UserService {
   async getUserByID(uid: number) {
     return await this.userModel.findOne(uid)
   }
-  
-  async getUserByUsername(username: String) {
+
+  async getUserByUsername(username: string) {
     return await this.userModel.findOne({ username: username })
   }
 }
