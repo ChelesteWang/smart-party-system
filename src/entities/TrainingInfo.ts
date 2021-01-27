@@ -1,7 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { EntityModel } from '@midwayjs/orm';
+import { EntityModel } from "@midwayjs/orm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { PartyBranch } from "./PartyBranch";
 
 @EntityModel('training_info')
+@Index("PARTY_BRANCH_ID", ["partyBranchId"], {})
 @Entity("training_info", { schema: "test" })
 export class TrainingInfo {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
@@ -17,11 +26,11 @@ export class TrainingInfo {
   })
   trainingTheme: string;
 
-  @Column("varchar", { name: "TRAINING_TIME", comment: "培训时间", length: 30 })
-  trainingTime: string;
+  @Column("datetime", { name: "training_create_time", nullable: true })
+  trainingCreateTime: Date | null;
 
-  @Column("int", { name: "TRAINING_CREDIT_HOUR", comment: "培训学时" })
-  trainingCreditHour: number;
+  @Column("datetime", { name: "training_time", nullable: true })
+  trainingTime: Date | null;
 
   @Column("varchar", {
     name: "TRAINING_UNIT",
@@ -50,18 +59,26 @@ export class TrainingInfo {
   checkStatus: number;
 
   @Column("varchar", {
-    name: "CREATE_TIME",
-    nullable: true,
-    comment: "创建时间",
-    length: 100,
-  })
-  createTime: string | null;
-
-  @Column("varchar", {
     name: "RESERVE2",
     nullable: true,
     comment: "备用字段",
     length: 100,
   })
   reserve2: string | null;
+
+  @Column("datetime", { name: "training_begin_time", nullable: true })
+  trainingBeginTime: Date | null;
+
+  @Column("datetime", { name: "training_end_time", nullable: true })
+  trainingEndTime: Date | null;
+
+  @Column("int", { name: "training_assess_type", nullable: true })
+  trainingAssessType: number | null;
+
+  @ManyToOne(() => PartyBranch, (partyBranch) => partyBranch.trainingInfos, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "PARTY_BRANCH_ID", referencedColumnName: "id" }])
+  partyBranch: PartyBranch;
 }

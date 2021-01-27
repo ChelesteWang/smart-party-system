@@ -1,11 +1,11 @@
+import { EntityModel } from "@midwayjs/orm";
 import { Column, Entity } from "typeorm";
-import { EntityModel } from '@midwayjs/orm';
 
 @EntityModel('user_login_token_log')
 @Entity("user_login_token_log", { schema: "test" })
 export class UserLoginTokenLog {
-  @Column("varchar", { primary: true, name: "id", length: 100 })
-  id: string;
+  @Column("varchar", { name: "id", nullable: true, length: 100 })
+  id: string | null;
 
   @Column("varchar", { name: "username", nullable: true, length: 100 })
   username: string | null;

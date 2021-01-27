@@ -1,5 +1,5 @@
+import { EntityModel } from "@midwayjs/orm";
 import { Column, Entity } from "typeorm";
-import { EntityModel } from '@midwayjs/orm';
 
 @EntityModel('user')
 @Entity("user", { schema: "test" })

@@ -1,7 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { EntityModel } from '@midwayjs/orm';
+import { EntityModel } from "@midwayjs/orm";
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { TrainingInfo } from "./TrainingInfo";
 
 @EntityModel('party_branch')
+@Index("party_branch_no", ["partyBranchNo"], {})
 @Entity("party_branch", { schema: "test" })
 export class PartyBranch {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
@@ -35,4 +43,22 @@ export class PartyBranch {
 
   @Column("int", { name: "status", nullable: true, comment: "delete status" })
   status: number | null;
+
+  @Column("varchar", { name: "party_branch_no", length: 20 })
+  partyBranchNo: string;
+
+  @Column("int", { name: "party_group_type", nullable: true })
+  partyGroupType: number | null;
+
+  @Column("int", { name: "party_unit_type", nullable: true })
+  partyUnitType: number | null;
+
+  @Column("int", { name: "party_industry_type", nullable: true })
+  partyIndustryType: number | null;
+
+  @Column("date", { name: "party_create_time", nullable: true })
+  partyCreateTime: string | null;
+
+  @OneToMany(() => TrainingInfo, (trainingInfo) => trainingInfo.partyBranch)
+  trainingInfos: TrainingInfo[];
 }

@@ -45,7 +45,7 @@
     "ci": "npm run cov",
     "build": "midway-bin build -c",
     "check": "luckyeye",
-    "typeorm": "typeorm-model-generator -h 47.94.228.26 -d test -u root -x wxy5210603 -e mysql -o ."
+    "typeorm": "typeorm-model-generator -h 47.94.228.26 -d test -u root -x 123456 -e mysql -o ."
   },
   "midway-bin-clean": [
     ".vscode/.tsbuildinfo",
