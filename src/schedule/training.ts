@@ -13,7 +13,7 @@ import { Context } from 'egg';
     type: 'worker',
 })
 
-//   定时推送未审核的活动（两小时提醒一次）
+//   定时推送未审核的活动（两小时提醒一次） 
 export class Training implements CommonSchedule {
 
     @Inject()
