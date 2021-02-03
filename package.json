@@ -8,7 +8,7 @@
     "@midwayjs/orm": "^1.3.0",
     "@midwayjs/swagger": "^1.0.6",
     "@midwayjs/web": "^2.3.0",
-    "casbin": "^3.1.0",
+    "casbin": "^4.1.1",
     "egg": "^2.0.0",
     "egg-authz": "^3.0.0",
     "egg-scripts": "^2.10.0",

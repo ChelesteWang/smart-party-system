@@ -13,4 +13,8 @@ export class TrainingService {
     async getUncheckedTraining() {
         return await this.trainingModel.find({checkStatus:0})
     }
+
+    async checkTraining(u){
+        await this.trainingModel.update()
+    }
 }

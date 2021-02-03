@@ -20,6 +20,30 @@ export default (appInfo: EggAppInfo) => {
     logging: false,
   }
 
+  config.redis = {
+    client: {
+      port: +process.env.REDIS_PORT || 6379, // Redis port
+      host: process.env.REDIS_HOST || '127.0.0.1', // Redis host
+      password: process.env.REDIS_PASSWORD || '',
+      db: +process.env.REDIS_DB || 0,
+    },
+  };
+
+  config.jwt = {
+    enable: true,
+    client: {
+      secret: 'wxy521', 
+    },
+    // rule https://github.com/eggjs/egg-path-matching
+    ignore: ['/auth/login', '/ping', '/swagger-u*', '/genid', '/genidHex'],
+  };
+
+  config.jwtAuth = {
+    ignore: config.jwt.ignore,
+    redisScope: 'admin', 
+    accessTokenExpiresIn: 60 * 60 * 24 * 3, 
+  };
+
   // add middleware 
   config.middleware = [];
 

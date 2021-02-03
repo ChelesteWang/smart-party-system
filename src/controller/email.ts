@@ -34,7 +34,6 @@ export class EmailController {
       date: '2020-10-24',
       text: '青年大学习主题讨论支部研究决定开展每周一，全员统一学习'
   }
-    // 方法一，构建发送邮件内容
     const sendHtml = `<div>
         <div style="border:1.0px solid #eeeeee;padding:10.0px; max-width: 800px;margin: 0 auto;">
             <h2 style="font-size: 14px; font-weight: blod">${message.title}</h2>
